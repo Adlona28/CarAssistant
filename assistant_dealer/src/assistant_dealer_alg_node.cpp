@@ -18,9 +18,13 @@ AssistantDealerAlgNode::AssistantDealerAlgNode(void) :
   // [init clients]
   sound_order_client_ = this->public_node_handle_.serviceClient<assistant_dealer::PlaySound>("sound_order");
 
-  change_lights_client_ = this->public_node_handle_.serviceClient<assistant_dealer::ChangeLights>("change_lights");
+  onShort_lights_client_ = this->public_node_handle_.serviceClient<std_srvs::SetBool>("onShort");
 
+  offShort_lights_client_ = this->public_node_handle_.serviceClient<std_srvs::SetBool>("offShort");
 
+  onLarge_lights_client_ = this->public_node_handle_.serviceClient<std_srvs::SetBool>("onLarge");
+
+  offLarge_lights_client_ = this->public_node_handle_.serviceClient<std_srvs::SetBool>("offLarge");
 
   // [init action servers]
 
@@ -63,8 +67,6 @@ void AssistantDealerAlgNode::command_mutex_exit(void)
 {
   pthread_mutex_unlock(&this->command_mutex_);
 }
-
-
 
 /*  [action callbacks] */
 

@@ -27,7 +27,7 @@
 
 #include <iri_base_algorithm/iri_base_algorithm.h>
 #include "assistant_dealer_alg.h"
-
+#include <std_srvs/SetBool.h>
 // [publisher subscriber headers]
 
 // [service client headers]
@@ -64,11 +64,17 @@ class AssistantDealerAlgNode : public algorithm_base::IriBaseAlgorithm<Assistant
     ros::ServiceClient sound_order_client_;
     assistant_dealer::PlaySound sound_order_srv_;
 
-    ros::ServiceClient change_lights_client_;
-    assistant_dealer::ChangeLights change_lights_srv_;
+    ros::ServiceClient onShort_lights_client_;
+    std_srvs::SetBool onShort_lights_srv_;
 
+    ros::ServiceClient offShort_lights_client_;
+    std_srvs::SetBool offShort_lights_srv_;
 
+    ros::ServiceClient onLarge_lights_client_;
+    std_srvs::SetBool onLarge_lights_srv_;
 
+    ros::ServiceClient offLarge_lights_client_;
+    std_srvs::SetBool offLarge_lights_srv_;
 
     // [action server attributes]
 
