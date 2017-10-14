@@ -1,0 +1,11 @@
+<launch>
+  <arg name="path_songs" default="/home/ferran/Desktop/" />
+
+  <node name="radio_player" pkg="radio_player" type="radio_player" output="screen" ns="/radio_player">
+    <param name="path_songs" type="string" value="$(arg path_songs)"/>
+
+    <remap from="/radio_player/robotsound"
+      to="/robotsound"/>
+  </node>
+
+</launch>
