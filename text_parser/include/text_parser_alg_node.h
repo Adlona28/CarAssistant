@@ -98,6 +98,8 @@ class TextParserAlgNode : public algorithm_base::IriBaseAlgorithm<TextParserAlgo
 
     std::string read_command_from_txt_files(void);
 
+    void write_response_txt(void);
+
    /**
     * \brief dynamic reconfigure server callback
     *
