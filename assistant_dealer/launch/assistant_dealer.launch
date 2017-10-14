@@ -1,0 +1,5 @@
+<launch>
+  <node name="assistant_dealer" pkg="assistant_dealer" type="assistant_dealer" output="screen" ns="/assistant_dealer">
+  </node>
+
+</launch>
