@@ -1,0 +1,11 @@
+<launch>
+  <node name="assistant_dealer" pkg="assistant_dealer" type="assistant_dealer" output="screen" ns="/assistant_dealer">
+
+    <!-- Command topic remap -->
+    <remap from="/assistant_dealer/assistant_dealer/command"
+      to="/text_parser/text_parser/command" />
+
+      
+  </node>
+
+</launch>
