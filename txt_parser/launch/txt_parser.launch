@@ -1,6 +1,0 @@
-<launch>
-
-  <node name="txt_parser" pkg="txt_parser" type="txt_parser" output="screen" ns="/txt_parser">
-  </node>
-
-</launch>
