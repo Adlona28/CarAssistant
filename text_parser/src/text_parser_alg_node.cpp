@@ -1,4 +1,6 @@
 #include "text_parser_alg_node.h"
+#include <fstream>
+
 
 TextParserAlgNode::TextParserAlgNode(void) :
   algorithm_base::IriBaseAlgorithm<TextParserAlgorithm>()
@@ -39,7 +41,7 @@ void TextParserAlgNode::mainNodeThread(void) {
     ROS_INFO("TextParserAlgNode:: Failed to Call Server on topic command ");
   }
 
-
+  write_response_txt();
 
   // [fill action structure and make request to the action server]
 
@@ -57,9 +59,26 @@ void TextParserAlgNode::mainNodeThread(void) {
 
 /*  [action requests] */
 std::string TextParserAlgNode::read_command_from_txt_files(void) {
-  return "hi";
+    std::string commnad = "";
+    ifstream myfile;
+    myfile.open("./SoundInput/input.txt");
+    if (myfile.is_opened()){
+        while ( getline (myfile,line)){
+          command += line + "\n";
+        }
+        myfile.close();
+    }
+  return command;
 }
 
+void TextParserAlgNode::write_response_txt(void){
+    ofstream myfile;
+    myfile.open("./SoundInput/output.txt");
+    if (myfile.is_open()){
+        myfile << "Tus huevos";
+        myfile.close();
+    }
+}
 
 void TextParserAlgNode::node_config_update(Config &config, uint32_t level)
 {
