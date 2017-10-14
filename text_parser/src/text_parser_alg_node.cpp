@@ -13,6 +13,8 @@ TextParserAlgNode::TextParserAlgNode(void) :
   // [init services]
 
   // [init clients]
+  command_client_ = this->public_node_handle_.serviceClient<text_parser::Command>("command");
+
 
   // [init action servers]
 
@@ -24,14 +26,20 @@ TextParserAlgNode::~TextParserAlgNode(void)
   // [free dynamic memory]
 }
 
-void TextParserAlgNode::mainNodeThread(void)
-{
+void TextParserAlgNode::mainNodeThread(void) {
   // [fill msg structures]
-  // Initialize the topic message structure
-  //this->command_String_msg_.data = my_var;
-
 
   // [fill srv structure and make request to the server]
+  this->command_srv_.request.command = read_command_from_txt_files();
+  ROS_INFO("TextParserAlgNode:: Sending New Request!");
+  if (this->command_client_.call(this->command_srv_)) {
+    ROS_INFO("TextParserAlgNode:: Call succeeded");
+  }
+  else {
+    ROS_INFO("TextParserAlgNode:: Failed to Call Server on topic command ");
+  }
+
+
 
   // [fill action structure and make request to the action server]
 
@@ -48,6 +56,10 @@ void TextParserAlgNode::mainNodeThread(void)
 /*  [action callbacks] */
 
 /*  [action requests] */
+std::string TextParserAlgNode::read_command_from_txt_files(void) {
+  return "hi";
+}
+
 
 void TextParserAlgNode::node_config_update(Config &config, uint32_t level)
 {

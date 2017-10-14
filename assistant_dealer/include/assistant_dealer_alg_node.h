@@ -31,6 +31,9 @@
 // [publisher subscriber headers]
 
 // [service client headers]
+#include <assistant_dealer/PlaySound.h>
+#include <assistant_dealer/ChangeLights.h>
+#include <text_parser/Command.h>
 
 // [action server client headers]
 
@@ -50,8 +53,22 @@ class AssistantDealerAlgNode : public algorithm_base::IriBaseAlgorithm<Assistant
     // [subscriber attributes]
 
     // [service attributes]
+    ros::ServiceServer command_server_;
+    bool commandCallback(text_parser::Command::Request &req, text_parser::Command::Response &res);
+    pthread_mutex_t command_mutex_;
+    void command_mutex_enter(void);
+    void command_mutex_exit(void);
+
 
     // [client attributes]
+    ros::ServiceClient sound_order_client_;
+    assistant_dealer::PlaySound sound_order_srv_;
+
+    ros::ServiceClient change_lights_client_;
+    assistant_dealer::ChangeLights change_lights_srv_;
+
+
+
 
     // [action server attributes]
 

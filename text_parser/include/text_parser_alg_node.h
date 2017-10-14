@@ -31,6 +31,7 @@
 // [publisher subscriber headers]
 
 // [service client headers]
+#include <text_parser/Command.h>
 
 // [action server client headers]
 
@@ -48,6 +49,9 @@ class TextParserAlgNode : public algorithm_base::IriBaseAlgorithm<TextParserAlgo
     // [service attributes]
 
     // [client attributes]
+    ros::ServiceClient command_client_;
+    text_parser::Command command_srv_;
+
 
     // [action server attributes]
 
@@ -91,6 +95,8 @@ class TextParserAlgNode : public algorithm_base::IriBaseAlgorithm<TextParserAlgo
     * request data to the corresponding server topics.
     */
     void mainNodeThread(void);
+
+    std::string read_command_from_txt_files(void);
 
    /**
     * \brief dynamic reconfigure server callback
