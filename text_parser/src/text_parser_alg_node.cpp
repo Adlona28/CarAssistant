@@ -1,6 +1,4 @@
 #include "text_parser_alg_node.h"
-#include <fstream>
-
 
 TextParserAlgNode::TextParserAlgNode(void) :
   algorithm_base::IriBaseAlgorithm<TextParserAlgorithm>()
@@ -32,17 +30,19 @@ void TextParserAlgNode::mainNodeThread(void) {
   // [fill msg structures]
 
   // [fill srv structure and make request to the server]
-  this->command_srv_.request.command = read_command_from_txt_files();
-  ROS_INFO("TextParserAlgNode:: Sending New Request!");
-  if (this->command_client_.call(this->command_srv_)) {
-    ROS_INFO("TextParserAlgNode:: Call succeeded");
+  std::string command_to_send = read_command_from_txt_files();
+  if (command_to_send.size() > 0) {
+    std::cout << command_to_send << std::endl;
+    this->command_srv_.request.command = command_to_send;
+    ROS_INFO("TextParserAlgNode:: Sending New Request!");
+    if (this->command_client_.call(this->command_srv_)) {
+      ROS_INFO("TextParserAlgNode:: Call succeeded");
+    }
+    else {
+      ROS_INFO("TextParserAlgNode:: Failed to Call Server on topic command ");
+    }
+    write_response_txt();
   }
-  else {
-    ROS_INFO("TextParserAlgNode:: Failed to Call Server on topic command ");
-  }
-
-  write_response_txt();
-
   // [fill action structure and make request to the action server]
 
   // [publish messages]
@@ -61,14 +61,14 @@ void TextParserAlgNode::mainNodeThread(void) {
 std::string TextParserAlgNode::read_command_from_txt_files(void) {
     std::string command = "";
     std::fstream myfile;
-    myfile.open("./SoundInput/input.txt", std::fstream::in);
+    myfile.open("/home/ferran/iri-lab/iri_ws/src/CarAssistant/SoundInput/input.txt", std::fstream::in);
     if (myfile.is_open()){
         std::string line;
         while ( getline (myfile,line)){
           command += line + "\n";
         }
         myfile.close();
-        myfile.open("./SoundInput/input.txt", std::fstream::out | std::fstream::trunc);
+        myfile.open("/home/ferran/iri-lab/iri_ws/src/CarAssistant/SoundInput/input.txt", std::fstream::out | std::fstream::trunc);
         myfile.close();
     }
     return command;
@@ -76,7 +76,7 @@ std::string TextParserAlgNode::read_command_from_txt_files(void) {
 
 void TextParserAlgNode::write_response_txt(void){
     std::ofstream myfile;
-    myfile.open("./SoundInput/output.txt");
+    myfile.open("/home/ferran/iri-lab/iri_ws/src/CarAssistant/SoundInput/output.txt");
     if (myfile.is_open()){
         myfile << "Tus huevos";
         myfile.close();

@@ -57,6 +57,7 @@ void AssistantDealerAlgNode::mainNodeThread(void)
 bool AssistantDealerAlgNode::commandCallback(text_parser::Command::Request &req, text_parser::Command::Response &res)
 {
   ROS_INFO("AssistantDealerAlgNode::commandCallback: New Request Received!");
+  std::cout << req.command << std::endl;
   std::vector<std::string> command_to_deal = string_split(req.command, " ");
 
   if (command_to_deal[0] == "play" || command_to_deal[0] == "reproduce") {

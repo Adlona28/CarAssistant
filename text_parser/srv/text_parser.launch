@@ -1,0 +1,4 @@
+<launch>
+  <node name="text_parser" pkg="text_parser" type="text_parser" output="screen" ns="/text_parser">
+  </node>
+</launch>

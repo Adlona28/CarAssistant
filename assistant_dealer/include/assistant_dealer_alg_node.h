@@ -28,6 +28,7 @@
 #include <iri_base_algorithm/iri_base_algorithm.h>
 #include "assistant_dealer_alg.h"
 #include <string>
+#include <iostream>
 #include <vector>
 #include <std_srvs/SetBool.h>
 // [publisher subscriber headers]

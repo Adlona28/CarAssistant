@@ -27,7 +27,9 @@
 
 #include <iri_base_algorithm/iri_base_algorithm.h>
 #include "text_parser_alg.h"
-
+#include <fstream>
+#include <iostream>
+#include <string>
 // [publisher subscriber headers]
 
 // [service client headers]

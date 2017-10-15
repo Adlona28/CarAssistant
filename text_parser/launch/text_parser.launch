@@ -1,4 +1,5 @@
 <launch>
   <node name="text_parser" pkg="text_parser" type="text_parser" ns="/text_parser">
   </node>
+
 </launch>
