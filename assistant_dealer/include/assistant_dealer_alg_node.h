@@ -31,6 +31,8 @@
 #include <iostream>
 #include <vector>
 #include <std_srvs/SetBool.h>
+#include <sound_play/sound_play.h>
+#include <algorithm>
 // [publisher subscriber headers]
 #include <std_msgs/String.h>
 
@@ -83,6 +85,8 @@ class AssistantDealerAlgNode : public algorithm_base::IriBaseAlgorithm<Assistant
     ros::ServiceClient offLarge_lights_client_;
     std_srvs::SetBool offLarge_lights_srv_;
 
+    sound_play::SoundClient sc;
+    ros::NodeHandle nh;
     // [action server attributes]
 
     // [action client attributes]

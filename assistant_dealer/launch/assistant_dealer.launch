@@ -10,6 +10,23 @@
     <remap from="/assistant_dealer/assistant_dealer/sound_order"
       to="/radio_player/radio_player/sound_order"/>
 
+    <remap from="/assistant_dealer/assistant_dealer/offShort"
+      to="/off_short_lights"/>
+
+    <remap from="/assistant_dealer/assistant_dealer/onShort"
+      to="/on_short_lights"/>
+
+    <remap from="/assistant_dealer/assistant_dealer/offLarge"
+      to="/off_large_lights"/>
+
+    <remap from="/assistant_dealer/assistant_dealer/onLarge"
+      to="/on_large_lights"/>
+
+    <remap from="/assistant_dealer/robotsound"
+      to="/robotsound"/>  
+
   </node>
+
+  <node name="rosserial_python" pkg="rosserial_python" type="serial_node.py"/>
 
 </launch>

@@ -69,7 +69,6 @@ class RadioPlayerAlgNode : public algorithm_base::IriBaseAlgorithm<RadioPlayerAl
 
     std::string path_songs;
 
-    std::map<std::string, sound_play::Sound> songs_playing;
    /**
     * \brief config variable
     *

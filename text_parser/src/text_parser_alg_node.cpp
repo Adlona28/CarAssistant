@@ -65,7 +65,7 @@ std::string TextParserAlgNode::read_command_from_txt_files(void) {
     if (myfile.is_open()){
         std::string line;
         while ( getline (myfile,line)){
-          command += line + "\n";
+          command += line;
         }
         myfile.close();
         myfile.open("/home/ferran/iri-lab/iri_ws/src/CarAssistant/SoundInput/input.txt", std::fstream::out | std::fstream::trunc);

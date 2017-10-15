@@ -6,6 +6,7 @@ RadioPlayerAlgNode::RadioPlayerAlgNode(void) :
   //init class attributes if necessary
   //this->loop_rate_ = 2;//in [Hz]
   this->first_iteration = true;
+
   // [init publishers]
 
   // [init subscribers]
@@ -55,28 +56,38 @@ void RadioPlayerAlgNode::mainNodeThread(void)
 /*  [service callbacks] */
 bool RadioPlayerAlgNode::sound_orderCallback(assistant_dealer::PlaySound::Request &req, assistant_dealer::PlaySound::Response &res)
 {
+  sound_play::Sound s1 = sc.waveSound("/home/ferran/Desktop/one piece.wav");
+  sound_play::Sound s2 = sc.waveSound("/home/ferran/Desktop/mamma.wav");
+  sound_play::Sound s3 = sc.waveSound("/home/ferran/Desktop/maniac.wav");
+  sound_play::Sound s4 = sc.waveSound("/home/ferran/Desktop/galway girl.wav");
+  sound_play::Sound s5 = sc.waveSound("/home/ferran/Desktop/all star.wav");
   ROS_INFO("RadioPlayerAlgNode::sound_orderCallback: New Request Received!");
-  std::map<std::string, sound_play::Sound>::iterator it;
   switch(req.order) {
     case 0: //play_song
-    //path_songs + req.song_to_play + ".wav"
-      it = songs_playing.find(req.song_to_play);
-      if (it == songs_playing.end()) {
-        sc.say("MUSIC ACTIVATED");
-        //songs_playing[req.song_to_play] = sc.waveSound("/home/ferran/Desktop/AllStar.wav"););
-        for (it = songs_playing.begin(); it != songs_playing.end(); ++it) {
-          it->second.stop();
-        }
-        //songs_playing[req.song_to_play].play();
-      }
+
+      sc.stopAll();
+      sc.say("MUSIC ACTIVATED");
+      sleepok(5, nh);
+
+      if(req.song_to_play == "one piece") s1.play();
+      if(req.song_to_play == "mamma") s2.play();
+      if(req.song_to_play == "maniac") s3.play();
+      if(req.song_to_play == "galway girl") s4.play();
+      if(req.song_to_play == "all star") s5.play();
+
+      //std::string song_full_path = path_songs + req.song_to_play + ".wav";
+      //const char * char_aux = song_full_path.c_str();
+      //sound_play::Sound s1 = sc.waveSound(char_aux);
+      //s1.play();
       break;
 
     case 1: //stop_song
-      for (it = songs_playing.begin(); it != songs_playing.end(); ++it) {
-        it->second.stop();
-      }
+      sc.say("MUSIC OFF");
+      sleepok(1, nh);
+      sc.stopAll();
       break;
   }
+
   return true;
 }
 

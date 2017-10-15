@@ -18,6 +18,7 @@ try:
             # recognize speech using Google Speech Recognition
             value = r.recognize_google(audio)
             fi = open('input.txt','w')
+            print(value)
             # we need some special handling here to correctly print unicode characters to standard output
             if str is bytes:  # this version of Python uses bytes for strings (Python 2)
                 fi.write("{}".format(value).encode("utf-8"))
