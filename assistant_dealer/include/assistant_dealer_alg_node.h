@@ -27,6 +27,8 @@
 
 #include <iri_base_algorithm/iri_base_algorithm.h>
 #include "assistant_dealer_alg.h"
+#include <string>
+#include <vector>
 #include <std_srvs/SetBool.h>
 // [publisher subscriber headers]
 #include <std_msgs/String.h>
@@ -118,6 +120,7 @@ class AssistantDealerAlgNode : public algorithm_base::IriBaseAlgorithm<Assistant
     */
     void mainNodeThread(void);
 
+    std::vector<std::string> string_split(std::string input, std::string delimiter);
    /**
     * \brief dynamic reconfigure server callback
     *
