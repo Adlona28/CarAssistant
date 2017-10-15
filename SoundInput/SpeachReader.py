@@ -32,13 +32,12 @@ try:
                 fo = open('output.txt','r')
                 text = fo.read()
                 fo.close()
-                print("txt vacio")
                 time.sleep(5)
             fi = open('output.txt','w')
             fi.write('')
             fi.close()
         except sr.UnknownValueError:
-            fantasma = 0
+            print("Oops! Didn't catch that")
         except sr.RequestError as e:
             fantasma = 0
 
