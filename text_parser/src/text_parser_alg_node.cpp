@@ -60,16 +60,18 @@ void TextParserAlgNode::mainNodeThread(void) {
 /*  [action requests] */
 std::string TextParserAlgNode::read_command_from_txt_files(void) {
     std::string command = "";
-    std::ifstream myfile;
-    myfile.open("./SoundInput/input.txt");
+    std::fstream myfile;
+    myfile.open("./SoundInput/input.txt", std::fstream::in);
     if (myfile.is_open()){
         std::string line;
         while ( getline (myfile,line)){
           command += line + "\n";
         }
         myfile.close();
+        myfile.open("./SoundInput/input.txt", std::fstream::out | std::fstream::trunc);
+        myfile.close();
     }
-  return command;
+    return command;
 }
 
 void TextParserAlgNode::write_response_txt(void){
