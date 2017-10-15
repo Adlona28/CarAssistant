@@ -1,9 +1,15 @@
 <launch>
   <include file="$(find text_parser)/launch/text_parser.launch"/>
+  <include file="$(find radio_player)/launch/radio_player.launch"/>
+  <include file="$(find sound_play)/soundplay_node.launch"/>
 
   <node name="assistant_dealer" pkg="assistant_dealer" type="assistant_dealer" output="screen" ns="/assistant_dealer">
     <remap from="/assistant_dealer/assistant_dealer/command"
       to="/text_parser/text_parser/command"/>
+
+    <remap from="/assistant_dealer/assistant_dealer/sound_order"
+      to="/radio_player/radio_player/sound_order"/>
+
   </node>
 
 </launch>
