@@ -29,6 +29,7 @@
 #include "assistant_dealer_alg.h"
 #include <std_srvs/SetBool.h>
 // [publisher subscriber headers]
+#include <std_msgs/String.h>
 
 // [service client headers]
 #include <assistant_dealer/PlaySound.h>
@@ -49,6 +50,9 @@ class AssistantDealerAlgNode : public algorithm_base::IriBaseAlgorithm<Assistant
 {
   private:
     // [publisher attributes]
+    ros::Publisher command_to_print_publisher_;
+    std_msgs::String command_to_print_String_msg_;
+
 
     // [subscriber attributes]
 

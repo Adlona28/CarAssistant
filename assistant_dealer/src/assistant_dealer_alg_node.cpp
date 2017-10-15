@@ -7,6 +7,7 @@ AssistantDealerAlgNode::AssistantDealerAlgNode(void) :
   //this->loop_rate_ = 2;//in [Hz]
 
   // [init publishers]
+  this->command_to_print_publisher_ = this->public_node_handle_.advertise<std_msgs::String>("command_to_print", 5);
 
   // [init subscribers]
 
@@ -40,12 +41,18 @@ AssistantDealerAlgNode::~AssistantDealerAlgNode(void)
 void AssistantDealerAlgNode::mainNodeThread(void)
 {
   // [fill msg structures]
+  // Initialize the topic message structure
+  //this->command_to_print_String_msg_.data = my_var;
+
 
   // [fill srv structure and make request to the server]
 
   // [fill action structure and make request to the action server]
 
   // [publish messages]
+  // Uncomment the following line to publish the topic message
+  //this->command_to_print_publisher_.publish(this->command_to_print_String_msg_);
+
 }
 
 /*  [subscriber callbacks] */
